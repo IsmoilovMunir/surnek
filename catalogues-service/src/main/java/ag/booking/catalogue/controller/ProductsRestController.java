@@ -4,23 +4,17 @@ import ag.booking.catalogue.entity.Product;
 import ag.booking.catalogue.payload.NewProductPayload;
 import ag.booking.catalogue.service.ProductService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 @RestController
@@ -34,8 +28,8 @@ public class ProductsRestController {
     }
 
     @GetMapping
-    public List<Product> findProduct() {
-        return this.productService.findAllProducts();
+    public Iterable<Product> findProduct(@RequestParam(name = "filter", required = false) String filter) {
+        return this.productService.findAllProducts(filter);
     }
 
     @PostMapping
@@ -58,6 +52,4 @@ public class ProductsRestController {
                     .body(product);
         }
     }
-
-
 }

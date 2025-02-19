@@ -8,6 +8,11 @@
 <a data-th-href="@{/catalogue/products/create}">+ Создать товар</a>
 
 <h1>Список товаров</h1>
+<form method="get" data-th-action="@{/catalogue/products/list}">
+    <label>Фильтр:<input type="text" name="filter" data-th-value="${filter}">
+        <button type="submit">Поиск</button>
+    </label>
+</form>
 <table>
     <thead>
     <tr>
@@ -20,7 +25,8 @@
         <td data-th-text="${product.id}"></td>
         <td>
             <a data-th-href="@{/catalogue/products/{productId}(productId=${product.id})}"
-               data-th-text="${product.title}"></a>
+               data-th-text="${product.title}"
+            ></a>
         </td>
         <td>
             <!-- Кнопка "Редактировать" -->
@@ -32,9 +38,7 @@
             </form>
         </td>
     </tr>
-
     </tbody>
 </table>
-
 </body>
 </html>
