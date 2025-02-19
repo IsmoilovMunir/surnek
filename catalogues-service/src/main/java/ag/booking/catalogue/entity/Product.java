@@ -1,40 +1,44 @@
 package ag.booking.catalogue.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(schema = "catalogue", name = "t_product")
+@NamedQueries(
+        @NamedQuery(
+                name = "Product.findAllByTitleLikeIgnoringCase",
+                query = "select p from Product p where p.title ilike :filter"
+        )
+)
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "c_title")
+    @NotNull
+    @Size(min = 3, max = 50)
     private String title;
+
+    @Column(name = "c_details")
+    @Size(max = 1000)
     private String details;
-
-    public Product(Integer id, String title, String details) {
-        this.details = details;
-        this.id = id;
-        this.title = title;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }
 
 

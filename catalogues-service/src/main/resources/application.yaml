@@ -1,2 +1,18 @@
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/catalogue
+    username: catalogue
+    password: catalogue
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.yaml
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
 server:
   port: 8081
+logging:
+  level:
+    sql: info
