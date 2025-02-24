@@ -7,6 +7,7 @@ import ag.booking.manager.entity.Product;
 import ag.booking.manager.payload.UpdateProductPayload;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -22,18 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
-
-@RequestMapping(("catalogue/products/{productId:\\d+}"))
 @Controller
+@RequestMapping(("catalogue/products/{productId:\\d+}"))
+@RequiredArgsConstructor
 public class ProductController {
     private final ProductsRestClient productsRestClient;
     private final MessageSource messageSource;
-
-    public ProductController(ProductsRestClient productsRestClient, MessageSource messageSource) {
-        this.productsRestClient = productsRestClient;
-        this.messageSource = messageSource;
-    }
-
 
     @ModelAttribute("product")
     public Product product(@PathVariable("productId") int productId) {
