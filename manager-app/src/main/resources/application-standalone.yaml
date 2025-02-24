@@ -1,4 +1,0 @@
-booking:
-  services:
-    catalogue:
-      uri: http://localhost:8081

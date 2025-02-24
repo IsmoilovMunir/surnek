@@ -1,0 +1,19 @@
+booking:
+  services:
+    catalogue:
+      uri: http://localhost:8081
+      username: catalogue_service_user1
+      password: password1
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/manager
+    username: manager
+    password: manager
+
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.yaml
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true

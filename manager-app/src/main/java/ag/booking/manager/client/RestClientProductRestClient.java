@@ -3,7 +3,10 @@ package ag.booking.manager.client;
 import ag.booking.manager.entity.Product;
 import ag.booking.manager.payload.NewProductPayload;
 import ag.booking.manager.payload.UpdateProductPayload;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
@@ -13,6 +16,7 @@ import org.springframework.web.client.RestClient;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+@RequiredArgsConstructor
 
 public class RestClientProductRestClient implements ProductsRestClient {
 
@@ -22,9 +26,6 @@ public class RestClientProductRestClient implements ProductsRestClient {
 
     private final RestClient restClient;
 
-    public RestClientProductRestClient(RestClient restClient) {
-        this.restClient = restClient;
-    }
 
     @Override
     public List<Product> findAllProducts(String filter) {
